@@ -1,5 +1,6 @@
 package com.common;
 
+
 import org.apache.log4j.Logger;
 
 public class LoggerMaster {
@@ -10,7 +11,6 @@ public class LoggerMaster {
 	public static void info(String category, String message) {
 		Logger.getLogger(category).info(message);
 	}
-	
 	
 	public static void trace(String category, String message) {
 		Logger.getLogger(category).trace(message);

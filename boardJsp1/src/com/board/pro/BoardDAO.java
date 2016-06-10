@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.common.DBConn;
+import com.common.LoggerMaster;
 import com.common.ResourceManager;
 
 public class BoardDAO {
@@ -29,6 +30,8 @@ public class BoardDAO {
 		
 		String sql = "Select Count(*) As cnt From BOARD ";
 		
+		LoggerMaster.info("BoardDAO", "No Param getTotalCount sql Is : " + sql);
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -43,7 +46,6 @@ public class BoardDAO {
 			if(rs.next()) {
 				result = rs.getInt("cnt");
 			}
-			
 		}
 		catch(Exception e)
 		{
