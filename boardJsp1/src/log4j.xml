@@ -20,15 +20,24 @@
         <appender-ref ref="console" />
     </logger>
     
-    <logger name="com.board.pro" additivity="false">
-        <level value="INFO" />
-        <appender-ref ref="console" />
-    </logger>
-    
-    <root>
-        <priority value="debug" />
-		<appender-ref ref="console" />
+    <appender name="dailyout" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="/logs/daily.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyMMdd-hhmmss" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%t> [%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%L] [%p] %m %n"/>
+		</layout>
 		
-    </root>
+		<rollingPolicy class="org.apache.log4j.rolling.FixedWindowRollingPolicy">
+			<param name="maxFileSize" value="100"/>
+		</rollingPolicy>
+		
+	</appender>
+	
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="console" />
+		<appender-ref ref="dailyout" />
+	</root>
     
 </log4j:configuration>

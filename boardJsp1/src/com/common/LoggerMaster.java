@@ -1,7 +1,6 @@
 package com.common;
 
-
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
 public class LoggerMaster {
 	public static void debug(String category, String message) {
