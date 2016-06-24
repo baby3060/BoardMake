@@ -15,19 +15,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/mysql-connector-java-5.1.39-bin.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-1.2.16.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-1.2-api-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-api-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-core-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-flume-ng-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-iostreams-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-jcl-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-jmx-gui-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-jul-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-nosql-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-taglib-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/log4j-web-2.4.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.7.12.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.7.12.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>
