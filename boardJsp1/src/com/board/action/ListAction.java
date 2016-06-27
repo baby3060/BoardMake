@@ -17,7 +17,11 @@ public class ListAction implements MyAction {
 		
 		int totalCount = dao.getTotalCount();
 		
+		LoggerMaster.debug("totalCount : " + totalCount, "getTotalCount");
+		
+		
 		req.setAttribute("totalCount", totalCount);
+		
 		
 		ActionForward forward = new ActionForward();
 		return forward;

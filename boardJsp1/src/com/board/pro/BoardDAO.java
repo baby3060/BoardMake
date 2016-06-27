@@ -24,7 +24,7 @@ public class BoardDAO {
 		manager.setConn(dbConn.getConn());
 	}
 	
-	// No Parameter
+	// No Parameter : All Data
 	public int getTotalCount() {
 		int result = 0;
 		

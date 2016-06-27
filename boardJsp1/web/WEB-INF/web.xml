@@ -11,7 +11,7 @@
   </welcome-file-list>
   
   <listener>
-	<listener-class>com.common.TestListener</listener-class>
+	<listener-class>com.common.ServerConfirm</listener-class>
 	</listener>
 	
 	<servlet>

@@ -9,6 +9,7 @@ public class ResourceManager {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	
 	public Connection getConn() {
 		return conn;
 	}

@@ -61,6 +61,7 @@ public class BoardController extends HttpServlet implements Servlet {
 		
 		makeForward(forward, command);
 		
+		// Dispatcher로 넘길 경우 request.~Attribute 사용 가능
 		if(forward.isRedirect()) {
 			res.sendRedirect(forward.getPath());
 		} else {
