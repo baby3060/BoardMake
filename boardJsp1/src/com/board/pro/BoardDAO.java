@@ -73,7 +73,8 @@ public class BoardDAO {
 			query.append(" Select board_num, board_title, board_gubun ");
 			query.append("      , board_pnum, board_contn, board_htcnt ");
 			query.append("      , board_usrid, board_cdate, board_mdate ");
-			query.append("      , board_priva, board_prpwd ");
+			query.append("      , board_priva, board_prpwd, board_ctcnt ");
+			query.append("      , board_rpcnt ");
 			query.append(" From BOARD ");
 			query.append(" Where board_num < ? ");
 			
