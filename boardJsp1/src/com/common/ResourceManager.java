@@ -29,7 +29,6 @@ public class ResourceManager {
 		this.rs = rs;
 	}
 	
-	
 	public void Release() {
 		if( rs == null ) { }
 		else

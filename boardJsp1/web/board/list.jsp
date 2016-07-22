@@ -8,21 +8,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<meta charset="UTF-8">
-	<script src="<%= cp %>/resources/scripts/"></script>
 	<script src="<%= cp %>/resources/scripts/jquery.min.js"></script>
+	<script src="<%= cp %>/resources/scripts/eventHandler.js"></script>
+	<script src="<%= cp %>/resources/scripts/Exceptions.js"></script>
 	<script src="<%= cp %>/resources/bootstrap/js/bootstrap.min.js"></script>
 	<link href="<%= cp %>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<title>List JSP</title>
-
+	
 </head>
 
 <body>
 	<div style="height : 60px; width : 100%; text-align: right; ">
 		
 	</div>
-
+	
+	<form name="listForm" method="post">
+		<input type="hidden" name="board_num" value="">
+	
 	<table class = "table table-striped table-bordered table-hover" >
    	<caption>Registered post</caption>
 	<colgroup>
@@ -45,11 +48,12 @@
 			<th>Hit(Reading) Count</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="tbody">
    	<c:choose>
 		<c:when test="${totalCount > 0}">
 			<c:forEach items="${boardList }" var="boardBean" varStatus="status">
-				<tr>
+				<tr id="<c:out value="${boardBean.board_num}"></c:out>" 
+					>
 					<td><c:out value="${boardBean.board_num}"></c:out></td>
 					<td>
 						<c:choose>
@@ -77,12 +81,48 @@
 		</c:when>
 		<c:otherwise>
 			<tr>
-				<td>등록된 게시물이 없습니다.</td>
+				<td colspan="7" style="text-align : center;">등록된 게시물이 없습니다.</td>
 			</tr>
 		</c:otherwise>
 	</c:choose>
 	</tbody>
-	
 </table>
+
+<div class="row">
+  <div class="col-md-1">1</div>
+  <div class="col-md-1">2</div>
+</div>
+
+</form>
+
+<script type="text/javascript">
+	// tbody 아래의 tr 클릭했을 시만.
+	function ListTrClick() {
+		var board_num = $(returnParent(event.target)).attr('id').trim();
+		
+		try {
+			if( board_num === undefined || board_num === '') {
+				throw new BoardNumNullException();
+			} else {
+				// Error
+				if( board_num <= 0 ) {
+					throw new NotBoardNumValidException(board_num);
+				} else {
+					removeEventById("tbody", "click", ListTrClick);
+					document.listForm.board_num.value = board_num;
+					document.listForm.action = "./boardDetail.bo";
+					document.listForm.submit();
+				}
+			}
+			
+		} catch(err) {
+			alert(err);
+		}
+	}
+	
+	registerEventById("tbody", "click", ListTrClick);
+	
+</script>
+
 </body>
 </html>

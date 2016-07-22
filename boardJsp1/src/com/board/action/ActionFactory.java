@@ -6,9 +6,11 @@ public class ActionFactory {
 		
 		if( cmd.equals("/boardList.bo") ) {
 			action = new ListAction();
-		} else if(cmd.equals("boardAdd.bo")) {
+		} else if(cmd.equals("/boardAdd.bo")) {
 			action = new AddAction();
-		}
+		} else if(cmd.equals("/boardDetail.bo")) {
+			action = new DetailAction();
+		} 
 		
 		return action;
 	}

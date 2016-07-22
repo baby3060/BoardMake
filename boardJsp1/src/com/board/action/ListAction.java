@@ -41,13 +41,20 @@ public class ListAction implements MyAction {
 		
 		int totalCount = dao.getTotalCount();
 		
-		ArrayList<BoardBean> boardList = dao.selectBoardListAll();
-		
-		LoggerMaster.debug("totalCount : " + totalCount, "getTotalCount");
-		
-		req.setAttribute("boardList", boardList);
-		req.setAttribute("totalCount", totalCount);
-		req.setAttribute("current_Page", currentPage);
+		if(totalCount == -1)
+		{
+			LoggerMaster.error("ListAction", "No Connected DB");
+		}
+		else
+		{
+			ArrayList<BoardBean> boardList = dao.selectBoardListAll();
+			
+			LoggerMaster.debug("totalCount : " + totalCount, "getTotalCount");
+			
+			req.setAttribute("boardList", boardList);
+			req.setAttribute("totalCount", totalCount);
+			req.setAttribute("current_Page", currentPage);
+		}
 		
 		ActionForward forward = new ActionForward();
 		return forward;

@@ -61,6 +61,7 @@ public class DBConn {
 				}
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
+					
 					this.conn = DriverManager.getConnection(this.url, this.userId, this.userPass);
 					
 					// Autocommit False
@@ -72,7 +73,8 @@ public class DBConn {
 			}
 			
 		} catch(SQLException sqlE) {
-			System.out.println(sqlE.toString());
+			LoggerMaster.error("DBConn.getConn()", "Mysql 서비스 실행 안 되어 있음.");
+			return null;
 		}
 		return this.conn;
 	}

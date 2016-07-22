@@ -22,7 +22,9 @@ public class BoardDAO {
 			dbConn = new DBConn();
 		}
 		
-		manager.setConn(dbConn.getConn());
+		if( dbConn.getConn() != null ) {
+			manager.setConn(dbConn.getConn());
+		}
 	}
 	
 	// No Parameter : All Data
@@ -38,15 +40,23 @@ public class BoardDAO {
 		
 		try
 		{
-			pstmt = manager.getConn().prepareStatement(sql);
-			manager.setPstmt(pstmt);
-			
-			rs = pstmt.executeQuery();
-			manager.setRs(rs);
-			
-			if(rs.next()) {
-				result = rs.getInt("cnt");
+			if( manager.getConn() == null )
+			{
+				result = -1;
 			}
+			else
+			{
+				pstmt = manager.getConn().prepareStatement(sql);
+				manager.setPstmt(pstmt);
+				
+				rs = pstmt.executeQuery();
+				manager.setRs(rs);
+				
+				if(rs.next()) {
+					result = rs.getInt("cnt");
+				}
+			}
+			
 		}
 		catch(Exception e)
 		{
