@@ -10,6 +10,7 @@
 <head>
 
 	<meta charset="UTF-8">
+	<script src="<%= cp %>/resources/scripts/"></script>
 	<script src="<%= cp %>/resources/scripts/jquery.min.js"></script>
 	<script src="<%= cp %>/resources/bootstrap/js/bootstrap.min.js"></script>
 	<link href="<%= cp %>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
