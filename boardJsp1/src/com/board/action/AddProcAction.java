@@ -7,8 +7,13 @@ public class AddProcAction implements MyAction {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String title = req.getParameter("title");
+		
+		System.out.println(title);
+		
+		ActionForward forward = new ActionForward();
+		return forward;
 	}
 
 }

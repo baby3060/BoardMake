@@ -10,6 +10,8 @@ public class ActionFactory {
 			action = new AddAction();
 		} else if(cmd.equals("/boardDetail.bo")) {
 			action = new DetailAction();
+		}  else if(cmd.equals("/boardAddPro.bo")) {
+			action = new AddProcAction();
 		} 
 		
 		return action;

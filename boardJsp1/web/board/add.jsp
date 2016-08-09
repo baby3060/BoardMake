@@ -9,7 +9,7 @@
 </head>
 <body >
 	<div id="wrap" style="width : 800px; margin : 0 auto;">
-		<form name="AddForm" action="./boardAddPro.bo">
+		<form name="AddForm" action="./boardAddPro.bo" method="post">
 			<div>
 				<div class="input-group input-group-lg">
 					  <span class="input-group-addon">
@@ -22,7 +22,7 @@
 					<span class="input-group-addon">
 						<i class="fa fa-lock"></i>
 					</span>
-					<input class="form-control" type="password" placeholder="If input password Private Content">
+					<input class="form-control" type="password" placeholder="If input password Private Content" name="password">
 				</div>
 				
 				
@@ -39,7 +39,7 @@
 			  <div class="btn-group" style="width : 100%; "> 
 			    
 			    
-			    <button type="button" class="btn btn-success" id="btnHome" style="float: right;"> 
+			    <button type="button" class="btn btn-success" id="btnAddProc" style="float: right;"> 
 			      <i class="fa fa-wrench"></i> 
 			    </button>
 			    
@@ -52,5 +52,16 @@
 			
 		</form>
 	</div>
+	
+<script type="text/javascript">
+	// tbody 아래의 tr 클릭했을 시만.
+	function ProcClick() {
+		document.AddForm.submit();
+	}
+
+	registerEventById("btnAddProc", "click", ProcClick);
+	
+</script>	
+	
 </body>
 </html>

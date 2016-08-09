@@ -81,7 +81,10 @@ public class BoardController extends HttpServlet implements Servlet {
 		} else if( command.equals("/boardDetail.bo") ) {
 			forward.setIsRedirect(false);
 			forward.setPath("./board/detail.jsp");
-		}
+		} else if( command.equals("/boardAddPro.bo") ) {
+			forward.setIsRedirect(false);
+			forward.setPath("./board/add.jsp");
+		} 
 		
 		
 	}
