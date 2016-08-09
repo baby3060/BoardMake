@@ -1,28 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../include/Common.jsp" %>    
 <% 
-	String cp = request.getContextPath(); 
 	int current_Page = (Integer)request.getAttribute("current_Page");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<script src="<%= cp %>/resources/scripts/jquery.min.js"></script>
-	<script src="<%= cp %>/resources/scripts/eventHandler.js"></script>
-	<script src="<%= cp %>/resources/scripts/Exceptions.js"></script>
-	<script src="<%= cp %>/resources/bootstrap/js/bootstrap.min.js"></script>
-	<link href="<%= cp %>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<title>List JSP</title>
-	
 </head>
 
 <body>
-	<div style="height : 60px; width : 100%; text-align: right; ">
-		
-	</div>
-	
+	<div id="wrap" style="width : 800px; margin : 0 auto; ">
+
 	<form name="listForm" method="post">
 		<input type="hidden" name="board_num" value="">
 	
@@ -33,8 +25,9 @@
 		<col width="5%">
 		<col width="11%">
 		<col width="16%">
-		<col width="12%">
 		<col width="15%">
+		<col width="15%">
+		<col width="19%">
 		<col>
 	</colgroup>
 	<thead>
@@ -45,7 +38,7 @@
 			<th>Content</th>
 			<th>Create Date</th>
 			<th>Create User</th>
-			<th>Hit(Reading) Count</th>
+			<th>Hit Count</th>
 		</tr>
 	</thead>
 	<tbody id="tbody">
@@ -88,13 +81,24 @@
 	</tbody>
 </table>
 
-<div class="row">
+<div class="row" style="margin : 0 auto;">
   <div class="col-md-1">1</div>
   <div class="col-md-1">2</div>
 </div>
 
+
+<div class="btn-toolbar" role="toolbar" style="width : 100%; "> 
+	  <div class="btn-group" style="width : 100%; "> 
+	    <button type="button" class="btn btn-default" id="btnAdd" style="float: right;"> 
+	      <i class="fa fa-plus"></i> 
+	    </button>
+	  </div> 
+	</div> 
+
+
 </form>
 
+</div>
 <script type="text/javascript">
 	// tbody 아래의 tr 클릭했을 시만.
 	function ListTrClick() {
@@ -120,7 +124,14 @@
 		}
 	}
 	
+	function AddBtnClick() {
+		removeEventById("btnAdd", "click", AddBtnClick);
+		document.listForm.action = "./boardAdd.bo";
+		document.listForm.submit();
+	}	
+	
 	registerEventById("tbody", "click", ListTrClick);
+	registerEventById("btnAdd", "click", AddBtnClick);
 	
 </script>
 
