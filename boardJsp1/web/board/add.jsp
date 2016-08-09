@@ -13,17 +13,26 @@
 			<div>
 				<div class="input-group input-group-lg">
 					  <span class="input-group-addon">
-					  	<i class="fa fa-envelope"></i>
+					  	<i class="fa fa-hand-o-right "></i>
 					  </span>
-					  <input class="form-control" type="text" placeholder="Email address">
+					  <input class="form-control" type="text" placeholder="Input Title" name="title">
 				</div>
 				
-				<div class="input-group input-group-lg">
+				<div class="input-group input-group-lg" style="margin : 0; padding : 0">
 					<span class="input-group-addon">
 						<i class="fa fa-lock"></i>
 					</span>
-					<input class="form-control" type="password" placeholder="Password">
+					<input class="form-control" type="password" placeholder="If input password Private Content">
 				</div>
+				
+				
+				<div class="input-group input-group-lg" style="margin : 0; padding : 0; height : 300px;">
+					<span class="input-group-addon">
+						<i class="fa fa-comment"></i>
+					</span>
+					<textarea class="form-control" rows="10" id="comment" style="height : 100%"></textarea>
+				</div>
+				
 			</div> 
 			
 			<div class="btn-toolbar" role="toolbar" style="width : 100%; "> 
