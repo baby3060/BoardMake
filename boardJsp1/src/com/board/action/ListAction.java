@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.board.pro.BoardBean;
 import com.board.pro.BoardDAO;
 import com.common.LoggerMaster;
+import com.common.action.ActionForward;
+import com.common.action.MyAction;
 
 public class ListAction implements MyAction {
 

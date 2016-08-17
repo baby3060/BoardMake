@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 public class XSSRequestWrapper extends HttpServletRequestWrapper {
-
 	private static Pattern[] patterns = new Pattern[] {
 			Pattern.compile("<script>(.*?)</script>", Pattern.CASE_INSENSITIVE),
 			Pattern.compile("src[\r\n]*=[\r\n]*\\\'(.*?)\\\'",

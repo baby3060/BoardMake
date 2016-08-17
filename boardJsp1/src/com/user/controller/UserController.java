@@ -1,4 +1,4 @@
-package com.board.controller;
+package com.user.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -10,16 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.board.controller.BoardController;
 import com.common.LoggerMaster;
 import com.common.action.ActionFactory;
 import com.common.action.ActionForward;
 import com.common.action.MyAction;
 
-public class BoardController extends HttpServlet implements Servlet {
-	
-	// serialVersionID
+public class UserController extends HttpServlet implements Servlet {
+
 	private static final long serialVersionUID = 1L;
-	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)  {
@@ -57,10 +56,11 @@ public class BoardController extends HttpServlet implements Servlet {
 		String contextPath = req.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
 		
-		LoggerMaster.info(BoardController.class.getName(), "command : " + command);
+		LoggerMaster.info(UserController.class.getName(), "command : " + command);
 		
 		ActionFactory factory = new ActionFactory();
 		MyAction action = factory.getAction(command);
+		
 		ActionForward forward = action.execute(req, res);
 		
 		makeForward(forward, command);
@@ -76,20 +76,9 @@ public class BoardController extends HttpServlet implements Servlet {
 	
 
 	private static void makeForward(ActionForward forward, String command) { 
-		if( command.equals("/boardList.bo") ) {
+		if( command.equals("/userLogin.uo") ) {
 			forward.setIsRedirect(false);
-			forward.setPath("./board/list.jsp");
-		} else if (command.equals("/boardAdd.bo")) {
-			forward.setIsRedirect(false);
-			forward.setPath("./board/add.jsp");
-		} else if( command.equals("/boardDetail.bo") ) {
-			forward.setIsRedirect(false);
-			forward.setPath("./board/detail.jsp");
-		} else if( command.equals("/boardAddPro.bo") ) {
-			forward.setIsRedirect(false);
-			forward.setPath("./board/add.jsp");
+			forward.setPath("./user/login.jsp");
 		} 
-		
-		
 	}
 }

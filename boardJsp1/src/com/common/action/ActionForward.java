@@ -1,4 +1,4 @@
-package com.board.action;
+package com.common.action;
 
 public class ActionForward {
 	private boolean isRedirect = false;
