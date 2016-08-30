@@ -73,12 +73,17 @@ public class UserController extends HttpServlet implements Servlet {
 			dispatcher.forward(req, res);
 		}
 	}
-	
 
 	private static void makeForward(ActionForward forward, String command) { 
 		if( command.equals("/userLogin.uo") ) {
 			forward.setIsRedirect(false);
 			forward.setPath("./user/login.jsp");
-		} 
+		} else if ( command.equals("/userLoginProc.uo") ) {
+			forward.setIsRedirect(false);
+			forward.setPath("./board/list.jsp");
+		} else if(command.equals("/userJoin.uo")) {
+			forward.setIsRedirect(true);
+			forward.setPath("./user/join.jsp");
+		}
 	}
 }

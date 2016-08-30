@@ -1,23 +1,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../include/Common.jsp" %>    
 <% 
 	int current_Page = (Integer)request.getAttribute("current_Page");
+	String sessionId = (String)session.getAttribute("UserID");
+	
+	if( sessionId == null ) {
+		sessionId = "";
+	}
+	
+	System.out.println("sessionId : " + sessionId);
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>List JSP</title>
+	<%@ include file="../include/Common.jsp" %>
 </head>
 
 <body>
 	<div id="wrap" style="width : 800px; margin : 0 auto; ">
-
+	
+	<div class="btn-toolbar" role="toolbar" style="width : 100%; "> 
+	  <div class="btn-group" style="width : 100%; "> 
+	    <button type="button" class="btn btn-primary" id="btnJoin" style="float: right;" title="join"> 
+	      <i class="fa fa-plus">&nbsp;User Join</i> 
+	    </button>
+	  </div> 
+	  
+	  <div class="btn-group" style="width : 100%; "> 
+	    <button type="button" class="btn btn-primary" id="btnLogout" style="float: right;" title="Logout"> 
+	      <i class="fa fa-plus">&nbsp;LogOut</i> 
+	    </button>
+	  </div> 
+	</div>
+	
 	<form name="listForm" method="post">
 		<input type="hidden" name="board_num" value="">
-	
+		<input type="hidden" name="ConnID" value="<%= sessionId %>" >
 	<table class = "table table-striped table-bordered table-hover" >
    	<caption>Registered post</caption>
 	<colgroup>
@@ -89,12 +111,11 @@
 
 <div class="btn-toolbar" role="toolbar" style="width : 100%; "> 
 	  <div class="btn-group" style="width : 100%; "> 
-	    <button type="button" class="btn btn-default" id="btnAdd" style="float: right;"> 
+	    <button type="button" class="btn btn-default" id="btnAdd" style="float: right;" title="Board Add"> 
 	      <i class="fa fa-plus"></i> 
 	    </button>
 	  </div> 
 	</div> 
-
 
 </form>
 
@@ -130,8 +151,44 @@
 		document.listForm.submit();
 	}	
 	
+	function JoinButtonDisabled() {
+		var ConnID = document.listForm.ConnID.value.replace(/\\s/g, '');
+		if( ConnID === '' ) {
+			
+			$("#btnJoin").css("visibility", "visible");
+			$("#btnJoin").removeAttr("disabled");
+			
+			$("#btnLogout").css("visibility", "hidden");
+			$("#btnLogout").attr("disabled", "true");
+			
+		} else {
+			$("#btnJoin").css("visibility", "hidden");
+			$("#btnJoin").attr("disabled", "true");
+			
+			$("#btnLogout").css("visibility", "visible");
+			$("#btnLogout").removeAttr("disabled");
+		}
+	}
+	
+	$(function(){
+		JoinButtonDisabled();
+	});
+	
+	function logoutClick() {
+		BootstrapDialog.confirm('Do you want to Logout?', function(result){
+			// Logout Proc Action
+            if(result) {
+				            	
+            	
+            }else {
+                return;
+            }
+        });
+	}
+	
 	registerEventById("tbody", "click", ListTrClick);
 	registerEventById("btnAdd", "click", AddBtnClick);
+	registerEventById("btnLogout", "click", logoutClick);
 	
 </script>
 

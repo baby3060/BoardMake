@@ -1,10 +1,7 @@
 package com.common.action;
 
-import com.board.action.AddAction;
-import com.board.action.AddProcAction;
-import com.board.action.DetailAction;
-import com.board.action.ListAction;
-import com.user.action.LoginAction;
+import com.board.action.*;
+import com.user.action.*;
 
 public class ActionFactory {
 	public MyAction getAction(String cmd) {
@@ -20,7 +17,11 @@ public class ActionFactory {
 			action = new AddProcAction();
 		} else if( cmd.equals("/userLogin.uo") ) {
 			action = new LoginAction(); 
-		}
+		} else if( cmd.equals("/userLoginProc.uo") ) {
+			action = new LoginActionProc(); 
+		} else if( cmd.equals("/userJoin.uo") ) {
+			action = new JoinAction(); 
+		} 
 		
 		return action;
 	}
