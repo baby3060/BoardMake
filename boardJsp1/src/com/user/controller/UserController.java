@@ -63,7 +63,13 @@ public class UserController extends HttpServlet implements Servlet {
 		
 		ActionForward forward = action.execute(req, res);
 		
-		makeForward(forward, command);
+		String errCode = (String)req.getAttribute("errCode");
+		
+		if( errCode == null ) {
+			errCode = "";
+		} 
+		
+		makeForward(forward, command, errCode);
 		
 		// Dispatcher로 넘길 경우 request.~Attribute 사용 가능
 		if(forward.isRedirect()) {
@@ -74,13 +80,18 @@ public class UserController extends HttpServlet implements Servlet {
 		}
 	}
 
-	private static void makeForward(ActionForward forward, String command) { 
+	private static void makeForward(ActionForward forward, String command, String errCode) { 
 		if( command.equals("/userLogin.uo") ) {
 			forward.setIsRedirect(false);
 			forward.setPath("./user/login.jsp");
 		} else if ( command.equals("/userLoginProc.uo") ) {
-			forward.setIsRedirect(false);
-			forward.setPath("./board/list.jsp");
+			if(errCode.equals("")) {
+				forward.setIsRedirect(true);
+				forward.setPath("./board/list.jsp");
+			} else {
+				forward.setIsRedirect(false);
+				forward.setPath("./user/login.jsp");
+			}
 		} else if(command.equals("/userJoin.uo")) {
 			forward.setIsRedirect(true);
 			forward.setPath("./user/join.jsp");

@@ -1,7 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
- <!DOCTYPE html>
+<%
+	String msg = (String)request.getAttribute("msg");
+	if( msg == null ) {
+		msg = "";
+	}
+	
+	String errCode = (String)request.getAttribute("errCode");
+	if( errCode == null ) {
+		errCode = "";
+	}
+	System.out.println(errCode);
+%>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -100,6 +113,19 @@
 		registerEventById("btnLogin", "click", login);
 		registerEventById("btnNoLogin", "click", noLogin);
 	</script>
+	
+	<% if(!msg.equals("")) { %>
+	<script type="text/javascript">
+		function err(message) {
+			BootstrapDialog.alert({
+				title: 'Be Missing Data',
+		        message: message
+		    });
+		}
+		
+		err('<%= msg %>');
+	</script>
+	<% } %>
 	
 </body>
 </html>
