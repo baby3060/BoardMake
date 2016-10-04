@@ -14,6 +14,17 @@
 <link href="<%= cp %>/resources/bootstrap/css/bootstrap-dialog.min.css" rel="stylesheet">
 
 <script>
+// 크롬용
+$(window).keydown(function(event) {
+	  if(event.altKey && event.keyCode == 37) { 
+	    event.preventDefault(); 
+	  }
+	  
+	});
+</script>
+
+
+<script>
 
 $(document).unbind('keydown').bind('keydown', function (event) {
     var doPrevent = false;

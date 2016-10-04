@@ -60,7 +60,7 @@ public class BoardDAO {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LoggerMaster.error("BoardDAO.getTotalCount : No Param", e.toString());
 		}
 		finally
 		{

@@ -9,9 +9,8 @@
 		sessionId = "";
 	}
 	
-	System.out.println("sessionId : " + sessionId);
-	
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,18 +22,25 @@
 <body>
 	<div id="wrap" style="width : 800px; margin : 0 auto; ">
 	
+	
 	<div class="btn-toolbar" role="toolbar" style="width : 100%; "> 
 	  <div class="btn-group" style="width : 100%; "> 
 	    <button type="button" class="btn btn-primary" id="btnJoin" style="float: right;" title="join"> 
 	      <i class="fa fa-plus">&nbsp;User Join</i> 
 	    </button>
+	    <button type="button" class="btn btn-primary" id="btnLogin" style="float: right;"> 
+	    	<span class="glyphicon glyphicon-search"></span> Login
+	    </button>
+	    
 	  </div> 
+	  
 	  
 	  <div class="btn-group" style="width : 100%; "> 
 	    <button type="button" class="btn btn-primary" id="btnLogout" style="float: right;" title="Logout"> 
 	      <i class="fa fa-plus">&nbsp;LogOut</i> 
 	    </button>
 	  </div> 
+	  
 	</div>
 	
 	<form name="listForm" method="post">
@@ -103,10 +109,25 @@
 	</tbody>
 </table>
 
-<div class="row" style="margin : 0 auto;">
-  <div class="col-md-1">1</div>
-  <div class="col-md-1">2</div>
-</div>
+<nav aria-label="Page navigation" style="width : 100%; text-align : center;">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
 
 <div class="btn-toolbar" role="toolbar" style="width : 100%; "> 
@@ -120,7 +141,41 @@
 </form>
 
 </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script type="text/javascript">
+	$(function(){
+		JoinButtonDisabled();
+	});
+
 	// tbody 아래의 tr 클릭했을 시만.
 	function ListTrClick() {
 		var board_num = $(returnParent(event.target)).attr('id').trim();
@@ -157,6 +212,8 @@
 			
 			$("#btnJoin").css("visibility", "visible");
 			$("#btnJoin").removeAttr("disabled");
+			$("#btnLogin").css("visibility", "visible");
+			$("#btnLogin").removeAttr("disabled");
 			
 			$("#btnLogout").css("visibility", "hidden");
 			$("#btnLogout").attr("disabled", "true");
@@ -164,21 +221,26 @@
 		} else {
 			$("#btnJoin").css("visibility", "hidden");
 			$("#btnJoin").attr("disabled", "true");
+			$("#btnLogin").css("visibility", "hidden");
+			$("#btnLogin").attr("disabled", "true");
 			
 			$("#btnLogout").css("visibility", "visible");
 			$("#btnLogout").removeAttr("disabled");
 		}
 	}
 	
-	$(function(){
-		JoinButtonDisabled();
-	});
+	function loginClick() {
+		$('#exampleModal').modal({
+			  keyboard: false,
+			  backdrop : 'static'
+		});
+	}
 	
 	function logoutClick() {
 		BootstrapDialog.confirm('Do you want to Logout?', function(result){
 			// Logout Proc Action
             if(result) {
-				            	
+				
             	
             }else {
                 return;
@@ -188,6 +250,7 @@
 	
 	registerEventById("tbody", "click", ListTrClick);
 	registerEventById("btnAdd", "click", AddBtnClick);
+	registerEventById("btnLogin", "click", loginClick);
 	registerEventById("btnLogout", "click", logoutClick);
 	
 </script>

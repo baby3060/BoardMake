@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.common.LoggerMaster;
 import com.common.action.ActionForward;
 import com.common.action.MyAction;
+import com.user.pro.UserDAO;
 
 public class LoginActionProc implements MyAction {
 
@@ -20,13 +21,16 @@ public class LoginActionProc implements MyAction {
 		
 		LoggerMaster.debug("LoginActionProc", "Input User Id : " + userId + ", User Pass : " + userPass);
 		
+		UserDAO userDAO = new UserDAO();
+		
 		// 둘 다 공백 아닐 때
 		if( !userId.equals("") && !userPass.equals("") ) {
 			// UserId 가 존재하는지?
-			int usrCnt = 0;
+			int usrCnt = userDAO.countExUserId(userId);
+			
 			if( usrCnt == 1 ) {
 				// Id의 Password 비교
-				String dbPass = "";
+				String dbPass = userDAO.getSaveDbPW(userId);
 				
 				if( dbPass.equals(userPass) ) {
 					LoginManager loginManager = LoginManager.getInstance();
@@ -36,6 +40,7 @@ public class LoginActionProc implements MyAction {
 					if( loginManager.isUsing(userId) ) {
 						req.setAttribute("errCode", "ERR");
 						req.setAttribute("msg", "이미 로그인 된 계정입니다.다시 로그인 해주십시오.");
+						loginManager.eqUsingSRemove(session, userId);
 					} else {
 						loginManager.setSession(session, userId);
 					}
