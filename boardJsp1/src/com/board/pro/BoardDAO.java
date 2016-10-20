@@ -10,8 +10,8 @@ import com.common.ResourceManager;
 
 public class BoardDAO {
 	
-	DBConn dbConn;
-	ResourceManager manager;
+	private DBConn dbConn;
+	private ResourceManager manager;
 	
 	public BoardDAO() {
 		if(manager == null) {
@@ -24,7 +24,13 @@ public class BoardDAO {
 		
 		if( dbConn.getConn() != null ) {
 			manager.setConn(dbConn.getConn());
+		} else {
+			manager.setConn(null);
 		}
+	}
+	
+	public boolean managerConnIsNotNull() {
+		return manager.getConn() != null;
 	}
 	
 	// No Parameter : All Data

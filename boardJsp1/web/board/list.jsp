@@ -111,6 +111,7 @@
 
 <nav aria-label="Page navigation" style="width : 100%; text-align : center;">
   <ul class="pagination">
+  
     <li>
       <a href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
@@ -126,6 +127,8 @@
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
+    
+    
   </ul>
 </nav>
 
@@ -143,33 +146,34 @@
 </div>
 
 
+<form name="loginForm" method="post" >
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Login Window</h4>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
+            <label for="recipient-name" class="control-label">ID:</label>
             <input type="text" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
-            <label for="message-text" class="control-label">Message:</label>
+            <label for="message-text" class="control-label">PassWord:</label>
             <textarea class="form-control" id="message-text"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-primary">Login</button>
       </div>
     </div>
   </div>
 </div>
-
+</form>
 
 <script type="text/javascript">
 	$(function(){

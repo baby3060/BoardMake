@@ -22,9 +22,14 @@ public class UserDAO {
 		
 		if( dbConn.getConn() != null ) {
 			manager.setConn(dbConn.getConn());
+		} else {
+			manager.setConn(null);
 		}
 	}
 	
+	public boolean managerConnIsNotNull() {
+		return manager.getConn() != null;
+	}
 	
 	public int countExUserId(String userId) {
 		int count = 0;

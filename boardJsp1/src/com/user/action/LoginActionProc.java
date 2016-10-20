@@ -23,41 +23,47 @@ public class LoginActionProc implements MyAction {
 		
 		UserDAO userDAO = new UserDAO();
 		
-		// 둘 다 공백 아닐 때
-		if( !userId.equals("") && !userPass.equals("") ) {
-			// UserId 가 존재하는지?
-			int usrCnt = userDAO.countExUserId(userId);
-			
-			if( usrCnt == 1 ) {
-				// Id의 Password 비교
-				String dbPass = userDAO.getSaveDbPW(userId);
+		if(userDAO.managerConnIsNotNull()) {
+			// 둘 다 공백 아닐 때
+			if( !userId.equals("") && !userPass.equals("") ) {
+				// UserId 가 존재하는지?
+				int usrCnt = userDAO.countExUserId(userId);
 				
-				if( dbPass.equals(userPass) ) {
-					LoginManager loginManager = LoginManager.getInstance();
+				if( usrCnt == 1 ) {
+					// Id의 Password 비교
+					String dbPass = userDAO.getSaveDbPW(userId);
 					
-					HttpSession session = req.getSession();
-					
-					if( loginManager.isUsing(userId) ) {
-						req.setAttribute("errCode", "ERR");
-						req.setAttribute("msg", "이미 로그인 된 계정입니다.다시 로그인 해주십시오.");
-						loginManager.eqUsingSRemove(session, userId);
+					if( dbPass.equals(userPass) ) {
+						LoginManager loginManager = LoginManager.getInstance();
+						
+						HttpSession session = req.getSession();
+						
+						if( loginManager.isUsing(userId) ) {
+							req.setAttribute("errCode", "ERR");
+							req.setAttribute("msg", "이미 로그인 된 계정입니다.다시 로그인 해주십시오.");
+							loginManager.eqUsingSRemove(session, userId);
+						} else {
+							loginManager.setSession(session, userId);
+						}
+						
 					} else {
-						loginManager.setSession(session, userId);
+						req.setAttribute("errCode", "ERR");
+						req.setAttribute("msg", "입력 비밀번호와 저장 비밀번호가 다릅니다.");
 					}
-					
 				} else {
 					req.setAttribute("errCode", "ERR");
-					req.setAttribute("msg", "입력 비밀번호와 저장 비밀번호가 다릅니다.");
-				}
-			} else {
-				req.setAttribute("errCode", "ERR");
-				if( usrCnt == 0 ) {
-					req.setAttribute("msg", "존재하지 않는 User입니다.");
-				} else {
-					req.setAttribute("msg", "잘못된 User입니다.");
+					if( usrCnt == 0 ) {
+						req.setAttribute("msg", "존재하지 않는 User입니다.");
+					} else {
+						req.setAttribute("msg", "잘못된 User입니다.");
+					}
 				}
 			}
+		} else {
+			req.setAttribute("errCode", "ERR");
+			req.setAttribute("msg", "DB가 연결되지 않았습니다.");
 		}
+		
 		
 		ActionForward forward = new ActionForward();
 		return forward;
