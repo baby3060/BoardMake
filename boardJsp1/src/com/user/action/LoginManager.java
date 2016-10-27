@@ -34,6 +34,7 @@ public class LoginManager implements HttpSessionBindingListener {
 		session.setAttribute("login", getInstance());
 	}
 	
+	
 	// 같은 아이디로 등록되어있는 세션 제거
 	public void eqUsingSRemove( HttpSession session, String userID ) {
 		String sessionId = "";

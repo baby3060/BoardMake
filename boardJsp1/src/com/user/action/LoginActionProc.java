@@ -39,6 +39,7 @@ public class LoginActionProc implements MyAction {
 						HttpSession session = req.getSession();
 						
 						if( loginManager.isUsing(userId) ) {
+							req.setAttribute("actions", "userLogin.uo");
 							req.setAttribute("errCode", "ERR");
 							req.setAttribute("msg", "이미 로그인 된 계정입니다.다시 로그인 해주십시오.");
 							loginManager.eqUsingSRemove(session, userId);
@@ -47,10 +48,12 @@ public class LoginActionProc implements MyAction {
 						}
 						
 					} else {
+						req.setAttribute("actions", "userLogin.uo");
 						req.setAttribute("errCode", "ERR");
 						req.setAttribute("msg", "입력 비밀번호와 저장 비밀번호가 다릅니다.");
 					}
 				} else {
+					req.setAttribute("actions", "userLogin.uo");
 					req.setAttribute("errCode", "ERR");
 					if( usrCnt == 0 ) {
 						req.setAttribute("msg", "존재하지 않는 User입니다.");

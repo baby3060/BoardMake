@@ -252,10 +252,17 @@
         });
 	}
 	
+	function btnJoin() {
+		removeEventById("btnJoin", "click", btnJoin);
+		document.listForm.action = "./userJoin.uo";
+		document.listForm.submit();
+	}
+	
 	registerEventById("tbody", "click", ListTrClick);
 	registerEventById("btnAdd", "click", AddBtnClick);
 	registerEventById("btnLogin", "click", loginClick);
 	registerEventById("btnLogout", "click", logoutClick);
+	registerEventById("btnJoin", "click", btnJoin);
 	
 </script>
 

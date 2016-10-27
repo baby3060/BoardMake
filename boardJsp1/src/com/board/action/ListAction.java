@@ -43,34 +43,16 @@ public class ListAction implements MyAction {
 		
 		// 시작 페이지
 		// 1, 11, 21, 31 순 10 개씩
-		//  1 ~ 10 : 0
-		// 11 ~ 20 : 1
-		// 21 ~ 30 : 2
-		// 31 ~ 40 : 3
-		int startPage =  ((currentPage - 1) / PAGE_WIDTH) * PAGE_WIDTH + 1 ;
+		int startPage =  (((currentPage - 1) / PAGE_WIDTH) * PAGE_WIDTH) + 1 ;
+		
 		
 		LoggerMaster.debug("ListAction", "This startPage Is : " + startPage);
 		
+		// 종료 페이지
+		// totalCount == 64 => totalPage = 7
+		// startPage = 1 : endPage = 7
 		
-		// 종료 페이지 
-		// totalPage = 5
-		// curPage : 1
-		// endPage : 5
-		
-		// totalPage = 15
-		// curPage : 3
-		// endPage : 10
-		
-		// totalPage = 15
-		// curPage : 10
-		// endPage : 10
-		
-		// totalPage = 15
-		// curPage : 11
-		// endPage : 15
-		
-		int endPage = 0;
-		
+		int endPage = (((int)(startPage / PAGE_SIZE)) + 1) * 10;
 		
 		LoggerMaster.debug("ListAction", "This CurrentPage Is : " + currentPage);
 		
@@ -84,11 +66,13 @@ public class ListAction implements MyAction {
 		}
 		else
 		{
-			// totalCount : 1 => totalPage = 1
-			// totalCount : 2 => totalPage = 1
-			// totalCount = 10 => totalPage = 1
-			// totalCount = 11 => totalPage = 2
 			totalPage = (int)(totalCount / PAGE_SIZE) + ((totalCount % PAGE_SIZE) > 0 ? 1 : 0 ); 
+	        
+	        if( endPage >= totalPage ) {
+	            endPage = totalPage;
+	        } 
+			
+	        LoggerMaster.debug("ListAction", "This EndPage Is : " + endPage);
 			
 			ArrayList<BoardBean> boardList = dao.selectBoardListAll();
 			

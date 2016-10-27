@@ -2,6 +2,7 @@ package com.user.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.common.LoggerMaster;
 import com.common.action.ActionForward;
@@ -14,6 +15,10 @@ public class JoinAction implements MyAction {
 		// TODO Auto-generated method stub
 		
 		LoggerMaster.info("JoinAction", "join");
+		
+		HttpSession session = req.getSession();
+		
+		session.invalidate();
 		
 		ActionForward forward = new ActionForward();
 		return forward;

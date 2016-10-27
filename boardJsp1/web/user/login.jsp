@@ -11,7 +11,6 @@
 	if( errCode == null ) {
 		errCode = "";
 	}
-	System.out.println(errCode);
 %>
 
 <!DOCTYPE html>
@@ -114,18 +113,7 @@
 		registerEventById("btnNoLogin", "click", noLogin);
 	</script>
 	
-	<% if(!msg.equals("")) { %>
-	<script type="text/javascript">
-		function err(message) {
-			BootstrapDialog.alert({
-				title: 'Be Missing Data',
-		        message: message
-		    });
-		}
-		
-		err('<%= msg %>');
-	</script>
-	<% } %>
+	
 	
 </body>
 </html>

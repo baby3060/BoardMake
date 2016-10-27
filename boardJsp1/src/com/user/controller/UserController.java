@@ -90,7 +90,7 @@ public class UserController extends HttpServlet implements Servlet {
 				forward.setPath("./board/list.jsp");
 			} else {
 				forward.setIsRedirect(false);
-				forward.setPath("./user/login.jsp");
+				forward.setPath("./include/error.jsp");
 			}
 		} else if(command.equals("/userJoin.uo")) {
 			forward.setIsRedirect(true);
