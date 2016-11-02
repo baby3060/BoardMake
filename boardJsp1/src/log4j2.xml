@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
+	<Properties>
+		<Property name="log-path">D:/dev/git/BoardMake/boardJsp1</Property>
+	</Properties>
+
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
       		<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
     	</Console>
+    	
+    	<RollingFile name="dailyRollingFileAppender"
+			 fileName="${log-path}/logs/dailyLog.log" 
+			 filePattern="${log-path}/logs/dailyLog.log.%d{yyyy-MM-dd [HHmm]}"
+			 append="false">
+			 
+				<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+				<Policies>
+					<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				</Policies>
+			</RollingFile>
 	</Appenders>
+	
 	
 	<Loggers>
 	    
-	    <Logger name="com.board.controller" level="DEBUG">
+	    <Logger name="com.board.controller" level="DEBUG" additivity="false">
+	    	<AppenderRef ref="dailyRollingFileAppender"/>
 	      <AppenderRef ref="Console"/>
 	    </Logger>
 	    
-	    <Logger name="com.board.pro" level="DEBUG">
+	    <Logger name="com.board.pro" level="DEBUG" additivity="false">
+	    	<AppenderRef ref="dailyRollingFileAppender"/>
 	      <AppenderRef ref="Console"/>
 	    </Logger>
 	    
 	    <Root level="DEBUG">
-	      <AppenderRef ref="Console"/>
+	    <AppenderRef ref="dailyRollingFileAppender"/>
+	    	<AppenderRef ref="Console"/>
 	    </Root>
 	    
 	</Loggers>

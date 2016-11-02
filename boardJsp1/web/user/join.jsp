@@ -12,41 +12,18 @@
 </head>
 <body>
 
-<div id="wrap" style="width : 800px; margin : 0 auto;">
-		<form name="AddForm" action="./boardAddPro.bo" method="post">
+<div id="wrap" style="width : 700px; margin : 0 auto;">
+		<form name="JoinForm" action="./boardAddPro.bo" method="post">
 			<div>
-				<div class="input-group input-group-lg">
-					  <span class="input-group-addon">
+				<div class="form-group">
+					  <span class="input-group-addon" style="width : 40px; ">
 					  	<i class="fa fa-hand-o-right "></i>
 					  </span>
-					  <input class="form-control" type="text" placeholder="Input User Id" name="user_id">
-				</div>
-				
-				<div class="input-group input-group-lg" style="margin : 0; padding : 0">
-					<span class="input-group-addon">
-						<i class="fa fa-lock"></i>
-					</span>
-					<input class="form-control" type="password" placeholder="input User password" name="user_pass">
-				</div>
-				
-				
-				<div class="input-group input-group-lg" style="margin : 0; padding : 0">
-					<span class="input-group-addon">
-						<i class="fa fa-comment"></i>
-					</span>
-					<input class="form-control" type="text" placeholder="Input User Name" name="user_name">
-				</div>
-				
-				<div class="input-group input-group-lg" style="margin : 0; padding : 0">
-					<span class="input-group-addon">
-						<i class="fa fa-comment"></i>
-					</span>
-					<label for="sel1">Select list:</label>
-				  <select class="form-control" id="user_sex" name="user_sex">
-				    <option selected>선택</option>
-				    <option>남</option>
-				    <option>여</option>
-				  </select>
+					  
+					  
+					  <div class="col-sm-10">
+					  	<input class="form-control" type="text" placeholder="Input User Id" name="user_id">
+					  </div>
 				</div>
 				
 			</div> 
@@ -67,6 +44,29 @@
 			
 		</form>
 	</div>
- 
+ 	
+ 	<script type="text/javascript">
+		function goToHome() {
+			
+			$("#btnAddProc").attr("disabled", "disabled");
+			document.JoinForm.action = "/boardList.bo";
+			document.JoinForm.submit();
+		}
+		
+		function JoinActionProc() {
+			$("#btnAddProc").attr("disabled", "disabled");
+			var user_id = document.JoinForm.user_id.value;
+			if( user_id === '' ) {
+				alert("회원가입 시 아이디는 필수입력입니다.");
+				document.JoinForm.user_id.focus();
+				return false;
+			}
+		}
+		
+		
+		registerEventById("btnHome", "click", goToHome);
+		registerEventById("btnAddProc", "click", JoinActionProc);
+	</script>
+ 	
 </body>
 </html>
