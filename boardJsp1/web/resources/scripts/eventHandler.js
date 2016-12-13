@@ -56,4 +56,3 @@ function returnKeyCode(event) {
 function returnParent(target) {
 	return target.parentElement;
 }
-
