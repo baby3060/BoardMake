@@ -3,6 +3,7 @@ package com.user.action;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -30,21 +31,20 @@ public class LoginManager implements HttpSessionBindingListener {
 	
 	public void setSession(HttpSession session, String userID) {
 		loginUsers.put(session.getId(), userID);
-		session.setAttribute("UserID", userID);
 		session.setAttribute("login", getInstance());
 	}
 	
 	
 	// 같은 아이디로 등록되어있는 세션 제거
-	public void eqUsingSRemove( HttpSession session, String userID ) {
-		String sessionId = "";
-		
-		Set set = loginUsers.entrySet();
-		
-		System.out.println(set);
+	public void eqUsingSRemove(String userID ) {
+		System.out.println(userID);
 	}
 	
-	
+	//세션 ID로 로긴된 ID 구분
+	 public String getUserID(String sessionID) {
+		 return (String)loginUsers.get(sessionID);
+	 }
+	 
 	public boolean isUsing(String usrId) {
 		boolean isUsing = false;
 		Enumeration<String> e = loginUsers.keys();
@@ -69,6 +69,7 @@ public class LoginManager implements HttpSessionBindingListener {
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent event) {
 		loginUsers.remove(event.getSession().getId());
+		eqUsingSRemove(getUserID(event.getSession().getId()));
 	}
 
 }

@@ -11,8 +11,7 @@ public class LoginAction implements MyAction {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
-		
-		LoggerMaster.debug("LoginAction", "Login");
+		// LoggerMaster.debug("LoginAction", "Login");
 		
 		ActionForward forward = new ActionForward();
 		return forward;

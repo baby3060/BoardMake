@@ -7,9 +7,11 @@
 <link href="<%= cp %>/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%= cp %>/resources/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%= cp %>/resources/bootstrap/css/bootstrap-dialog.min.css" rel="stylesheet">
+<link href="<%= cp %>/resources/css/style.css" rel="stylesheet">
 
 <script src="<%= cp %>/resources/scripts/jquery.min.js"></script>
 <script src="<%= cp %>/resources/scripts/eventHandler.js"></script>
+<script src="<%= cp %>/resources/scripts/InputHandler.js"></script>
 <script src="<%= cp %>/resources/scripts/Exceptions.js"></script>
 <script src="<%= cp %>/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="<%= cp %>/resources/bootstrap/js/bootstrap-dialog.min.js"></script>

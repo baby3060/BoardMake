@@ -14,12 +14,10 @@ public class LoginActionProc implements MyAction {
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
 		
-		LoggerMaster.debug("LoginActionProc", "Login");
+		// LoggerMaster.debug("LoginActionProc", "Login");
 		
 		String userId = req.getParameter("UserID");
 		String userPass = req.getParameter("UserPass");
-		
-		LoggerMaster.debug("LoginActionProc", "Input User Id : " + userId + ", User Pass : " + userPass);
 		
 		UserDAO userDAO = new UserDAO();
 		
@@ -42,7 +40,7 @@ public class LoginActionProc implements MyAction {
 							req.setAttribute("actions", "userLogin.uo");
 							req.setAttribute("errCode", "ERR");
 							req.setAttribute("msg", "이미 로그인 된 계정입니다.다시 로그인 해주십시오.");
-							loginManager.eqUsingSRemove(session, userId);
+							loginManager.eqUsingSRemove(userId);
 						} else {
 							loginManager.setSession(session, userId);
 						}

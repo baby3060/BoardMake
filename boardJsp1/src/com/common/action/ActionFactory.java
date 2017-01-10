@@ -21,7 +21,11 @@ public class ActionFactory {
 			action = new LoginActionProc(); 
 		} else if( cmd.equals("/userJoin.uo") ) {
 			action = new JoinAction(); 
-		} 
+		} else if( cmd.equals("/userJoinProc.uo") ) {
+			action = new JoinProcAction(); 
+		}  else if( cmd.equals("/userLogout.uo") ) {
+			action = new LogOut();
+		}
 		
 		return action;
 	}

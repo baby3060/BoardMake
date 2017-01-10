@@ -11,9 +11,6 @@ public class AddAction implements MyAction {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
-		
-		LoggerMaster.debug("AddAction", "Add");
-		
 		ActionForward forward = new ActionForward();
 		return forward;
 	}

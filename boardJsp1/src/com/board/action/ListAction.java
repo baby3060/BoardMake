@@ -16,9 +16,6 @@ public class ListAction implements MyAction {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
-		
-		LoggerMaster.debug("ListAction", "List");
-		
 		String current_Page = req.getParameter("current_Page");
 		if( current_Page == null ) {
 			current_Page = "";
@@ -46,7 +43,7 @@ public class ListAction implements MyAction {
 		int startPage =  (((currentPage - 1) / PAGE_WIDTH) * PAGE_WIDTH) + 1 ;
 		
 		
-		LoggerMaster.debug("ListAction", "This startPage Is : " + startPage);
+		// LoggerMaster.debug("ListAction", "This startPage Is : " + startPage);
 		
 		// 종료 페이지
 		// totalCount == 64 => totalPage = 7
@@ -54,7 +51,7 @@ public class ListAction implements MyAction {
 		
 		int endPage = (((int)(startPage / PAGE_SIZE)) + 1) * 10;
 		
-		LoggerMaster.debug("ListAction", "This CurrentPage Is : " + currentPage);
+		// LoggerMaster.debug("ListAction", "This CurrentPage Is : " + currentPage);
 		
 		BoardDAO dao = new BoardDAO();
 		
@@ -72,11 +69,11 @@ public class ListAction implements MyAction {
 	            endPage = totalPage;
 	        } 
 			
-	        LoggerMaster.debug("ListAction", "This EndPage Is : " + endPage);
+	        // LoggerMaster.debug("ListAction", "This EndPage Is : " + endPage);
 			
 			ArrayList<BoardBean> boardList = dao.selectBoardListAll();
 			
-			LoggerMaster.debug("totalCount : " + totalCount, "getTotalCount");
+			// LoggerMaster.debug("totalCount : " + totalCount, "getTotalCount");
 			
 			req.setAttribute("boardList", boardList);
 			req.setAttribute("totalCount", totalCount);

@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+
+.w15 { width : 178px;  }
+.noKor { ime-mode : disabled; }
+.FKor { ime-mode : active; }

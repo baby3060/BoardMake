@@ -1,14 +1,18 @@
+<%@page import="com.user.action.LoginManager"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
 	int current_Page = (Integer)request.getAttribute("current_Page");
-	String sessionId = (String)session.getAttribute("UserID");
+	LoginManager manager = (LoginManager)session.getAttribute("login");
 	
-	if( sessionId == null ) {
+	String sessionId = "";
+	
+	if( manager == null ) {
 		sessionId = "";
+	} else {
+		sessionId = manager.getUserID(session.getId());	
 	}
-	
 %>
 
 <!DOCTYPE html>
@@ -244,8 +248,8 @@
 		BootstrapDialog.confirm('Do you want to Logout?', function(result){
 			// Logout Proc Action
             if(result) {
-				
-            	
+            	document.listForm.action = "../userLogout.uo";
+        		document.listForm.submit();
             }else {
                 return;
             }

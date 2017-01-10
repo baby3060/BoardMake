@@ -4,24 +4,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.common.LoggerMaster;
 import com.common.action.ActionForward;
 import com.common.action.MyAction;
 
-public class JoinAction implements MyAction {
+public class LogOut implements MyAction {
 
 	@Override
 	public ActionForward execute(HttpServletRequest req, HttpServletResponse res) {
-		// TODO Auto-generated method stub
+		String connId = req.getParameter("ConnID"); 
 		
-		// LoggerMaster.info("JoinAction", "join");
+		if( connId == null ) {
+			connId = "";
+		}
 		
-		HttpSession session = req.getSession();
+		LoginManager loginManager = LoginManager.getInstance();
 		
-		session.invalidate();
+		loginManager.eqUsingSRemove(connId);
 		
 		ActionForward forward = new ActionForward();
 		return forward;
 	}
-
 }
